@@ -3,30 +3,28 @@ const counterValue = document.querySelector('#value');
 const btns = document.querySelectorAll('.btn');
 
 //
-let intialValue = 0;
+let counter = 0;
 
-//event listner
+//event listener
 btns.forEach(function (btn) {
   btn.addEventListener('click', function (e) {
     const classlValue = e.currentTarget.classList[1];
     if (classlValue === 'decrease') {
-      intialValue--;
-      counterValue.textContent = intialValue;
+      counter--;
     }
     if (classlValue === 'reset') {
-      intialValue = 0;
-      counterValue.textContent = 0;
+      counter = 0;
     }
     if (classlValue === 'increase') {
-      intialValue++;
-      counterValue.textContent = intialValue;
+      counter++;
     }
-    if (intialValue > 0) {
+    if (counter > 0) {
       counterValue.style.color = 'green';
-    } else if (intialValue < 0) {
+    } else if (counter < 0) {
       counterValue.style.color = 'red';
     } else {
       counterValue.style.color = 'black';
     }
+    counterValue.textContent = counter;
   });
 });
