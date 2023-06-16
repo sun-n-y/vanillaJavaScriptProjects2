@@ -51,24 +51,18 @@ window.addEventListener('DOMContentLoaded', function () {
 
 nextBtn.addEventListener('click', function () {
   currentItem++;
-  console.log(currentItem);
   if (currentItem > reviews.length - 1) {
     currentItem = 0;
-    showPerson(currentItem);
-  } else {
-    showPerson(currentItem);
   }
-  console.log(currentItem);
+  showPerson(currentItem);
 });
 
 prevBtn.addEventListener('click', function () {
   currentItem--;
   if (currentItem < 0) {
     currentItem = reviews.length - 1;
-    showPerson(currentItem);
-  } else {
-    showPerson(currentItem);
   }
+  showPerson(currentItem);
 });
 
 randomBtn.addEventListener('click', function () {
