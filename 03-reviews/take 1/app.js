@@ -32,34 +32,59 @@ const reviews = [
 
 //target elements
 const reviewContent = document.querySelector('.review-content');
-const btns = document.querySelectorAll('.btn');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+const randomBtn = document.querySelector('.random-btn');
 
-//
-let number = 0;
+const img = document.querySelector('#person-img');
+const author = document.querySelector('#author');
+const job = document.querySelector('#job');
+const info = document.querySelector('#info');
+
+//start value
+let currentItem = 0;
 
 //event listener
-btns.forEach(function (btn) {
-  btn.addEventListener('click', function (e) {
-    const list = e.currentTarget.classList;
-    if (list.contains('next-btn')) {
-      number++;
-      reviewContent.innerHTML = reviewsArray2[number];
-    }
-    if (list.contains('prev-btn')) {
-      number--;
-      reviewContent.innerHTML = reviewsArray2[number];
-    }
-    // if ((reviewContent.textContent = 'undefined')) {
-    //   reviewContent.innerHTML = reviewsArray2[0];
-    // }
-  });
+window.addEventListener('DOMContentLoaded', function () {
+  showPerson(currentItem);
 });
 
-const reviewsArray2 = reviews.map(function (item) {
-  return `<div class="img-container">
-            <img src="${item.img}" id="person-img" alt="">
-          </div>
-          <h4 id="author">${item.name}</h4>
-          <p id="job">${item.job}</p>
-          <p id="info">${item.text}</p>`;
+nextBtn.addEventListener('click', function () {
+  currentItem++;
+  console.log(currentItem);
+  if (currentItem > reviews.length - 1) {
+    currentItem = 0;
+    showPerson(currentItem);
+  } else {
+    showPerson(currentItem);
+  }
+  console.log(currentItem);
 });
+
+prevBtn.addEventListener('click', function () {
+  currentItem--;
+  if (currentItem < 0) {
+    currentItem = reviews.length - 1;
+    showPerson(currentItem);
+  } else {
+    showPerson(currentItem);
+  }
+});
+
+randomBtn.addEventListener('click', function () {
+  showPerson(randomNumber());
+  console.log(randomNumber());
+});
+
+//function
+function showPerson(person) {
+  const item = reviews[person];
+  img.src = item.img;
+  author.textContent = item.name;
+  job.textContent = item.job;
+  info.textContent = item.text;
+}
+
+function randomNumber() {
+  return Math.floor(Math.random() * reviews.length);
+}
