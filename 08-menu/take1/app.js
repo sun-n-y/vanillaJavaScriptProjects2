@@ -71,31 +71,24 @@ const menu = [
     img: './images/item-9.jpeg',
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  {
+    id: 10,
+    title: 'steak dinner',
+    category: 'dinner',
+    price: 39.99,
+    img: './images/item-10.jpeg',
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+  },
 ];
 
 //target elements
 const menuSection = document.querySelector('.section-center');
-const filterBtns = document.querySelectorAll('.filter-btn');
+const btnContainer = document.querySelector('.btn-container');
 
 //event listener
 window.addEventListener('DOMContentLoaded', function () {
   showArray(menu);
-});
-
-filterBtns.forEach(function (btn) {
-  btn.addEventListener('click', function (e) {
-    const filterValue = e.currentTarget.dataset.id;
-    const filteredArray = menu.filter(function (item) {
-      if (item.category == filterValue) {
-        return item;
-      }
-    });
-    if (filterValue == 'all') {
-      showArray(menu);
-    } else {
-      showArray(filteredArray);
-    }
-  });
+  menuButtons();
 });
 
 //function
@@ -115,4 +108,41 @@ function showArray(array) {
     })
     .join('');
   menuSection.innerHTML = menuArray;
+}
+
+function menuButtons() {
+  const categories = menu.reduce(
+    function (values, item) {
+      if (!values.includes(item.category)) {
+        values.push(item.category);
+      }
+      return values;
+    },
+    ['all']
+  );
+  const btnArray = categories
+    .map(function (item) {
+      return `<button class="filter-btn" data-id="${item}" type="button">${item}</button>`;
+    })
+    .join('');
+
+  btnContainer.innerHTML = btnArray;
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      const filterValue = e.currentTarget.dataset.id;
+      const filteredArray = menu.filter(function (item) {
+        if (item.category === filterValue) {
+          return item;
+        }
+      });
+      if (filterValue == 'all') {
+        showArray(menu);
+      } else {
+        showArray(filteredArray);
+      }
+    });
+  });
 }
