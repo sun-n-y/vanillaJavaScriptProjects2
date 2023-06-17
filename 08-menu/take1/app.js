@@ -75,10 +75,27 @@ const menu = [
 
 //target elements
 const menuSection = document.querySelector('.section-center');
+const filterBtns = document.querySelectorAll('.filter-btn');
 
 //event listener
 window.addEventListener('DOMContentLoaded', function () {
   showArray(menu);
+});
+
+filterBtns.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    const filterValue = e.currentTarget.dataset.id;
+    const filteredArray = menu.filter(function (item) {
+      if (item.category == filterValue) {
+        return item;
+      }
+    });
+    if (filterValue == 'all') {
+      showArray(menu);
+    } else {
+      showArray(filteredArray);
+    }
+  });
 });
 
 //function
