@@ -51,24 +51,26 @@ scrollLinks.forEach(function (link) {
     e.preventDefault();
     const id = e.currentTarget.getAttribute('href').slice(1);
     const element = document.getElementById(id);
-    if (!navbar.classList.contains('fixed-nav')) {
-      scrollTo({
-        left: 0,
-        top: element.offsetTop - navbarHeight - navbarHeight,
-      });
-    } else {
-      scrollTo({
-        left: 0,
-        top: element.offsetTop - navbarHeight,
-      });
-    }
+
     const containerHeight = linksContainer.getBoundingClientRect().height;
-    if (links.getBoundingClientRect().height > 30) {
-      scrollTo({
-        left: 0,
-        top: element.offsetTop - navbarHeight - navbarHeight - containerHeight,
-      });
-      linksContainer.style.height = 0;
+    const fixedNav = navbar.classList.contains('fixed-nav');
+    let position = element.offsetTop - navbarHeight;
+
+    if (!fixedNav) {
+      position = position - navbarHeight;
     }
+
+    if (containerHeight > 50) {
+      position = position - containerHeight;
+    }
+    if ((containerHeight > 50) & fixedNav) {
+      position = position + containerHeight;
+    }
+
+    window.scrollTo({
+      left: 0,
+      top: position,
+    });
+    linksContainer.style.height = 0;
   });
 });
