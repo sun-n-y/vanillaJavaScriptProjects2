@@ -63,6 +63,7 @@ scrollLinks.forEach(function (link) {
     if (containerHeight > 50) {
       position = position - containerHeight;
     }
+
     if ((containerHeight > 50) & fixedNav) {
       position = position + containerHeight;
     }
