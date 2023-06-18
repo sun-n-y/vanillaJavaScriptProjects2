@@ -62,5 +62,13 @@ scrollLinks.forEach(function (link) {
         top: element.offsetTop - navbarHeight,
       });
     }
+    const containerHeight = linksContainer.getBoundingClientRect().height;
+    if (links.getBoundingClientRect().height > 30) {
+      scrollTo({
+        left: 0,
+        top: element.offsetTop - navbarHeight - navbarHeight - containerHeight,
+      });
+      linksContainer.style.height = 0;
+    }
   });
 });
