@@ -42,3 +42,31 @@ window.addEventListener('scroll', function () {
 });
 
 // ********** smooth scroll ************
+const scrollLinks = document.querySelectorAll('.scroll-link');
+
+scrollLinks.forEach(function (link) {
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    const id = e.currentTarget.getAttribute('href').slice(1);
+    const element = document.getElementById(id);
+
+    const fixedNav = navbar.classList.contains('fixed-nav');
+    const linksContainerHeight = linksContainer.getBoundingClientRect().height;
+
+    let position = element.offsetTop - navbarHeight;
+
+    if (!fixedNav) {
+      position = position - navbarHeight;
+    }
+
+    if (linksHeight > 80) {
+      position = position - linksHeight;
+    }
+    if ((navbarHeight > 8) & fixedNav) {
+      position = position + linksHeight;
+    }
+
+    window.scrollTo({ left: 0, top: position });
+    linksContainer.style.height = 0;
+  });
+});
