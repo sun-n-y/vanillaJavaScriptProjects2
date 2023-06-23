@@ -27,7 +27,7 @@ form.addEventListener('submit', function (e) {
   //empty
   //<0
   //>9
-  if (value > 9 || !value || value < 0) {
+  if (value > 9 || !value || value <= 0) {
     result.innerHTML = `<p class="result">${text[randomValue]}</p>`;
   } else {
     let tempArray = text.slice(0, value);
