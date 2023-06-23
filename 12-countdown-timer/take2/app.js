@@ -33,7 +33,7 @@ const deadline = document.querySelector('.deadline');
 const items = document.querySelectorAll('.deadline h4');
 
 //date
-const futureDate = new Date(2023, 5, 23, 12, 0, 0);
+const futureDate = new Date(2024, 5, 23, 13, 0, 0);
 
 const day = weekdays[futureDate.getDay()];
 const date = futureDate.getDate();
