@@ -29,5 +29,13 @@ form.addEventListener('submit', function (e) {
   //>9
   if (value > 9 || !value || value < 0) {
     result.innerHTML = `<p class="result">${text[randomValue]}</p>`;
+  } else {
+    let tempArray = text.slice(0, value);
+    let tempText = tempArray
+      .map(function (item) {
+        return `<p class="result">${item}</p>`;
+      })
+      .join('');
+    result.innerHTML = `<p class="result">${tempText}</p>`;
   }
 });
