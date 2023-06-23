@@ -61,3 +61,41 @@ function format2(value) {
 }
 
 giveaway.innerHTML = `Giveaway Ends On ${day}, ${date} ${month} ${year}, ${hour}:${minute}${amPm}`;
+
+function getRemainingTime() {
+  const currentTime = new Date().getTime();
+  const t = futureDate.getTime() - currentTime;
+
+  const oneDay = 24 * 60 * 60 * 1000;
+  const oneHour = 60 * 60 * 1000;
+  const oneMin = 60 * 1000;
+  const oneSec = 1000;
+
+  const days = Math.floor(t / oneDay);
+  const hours = Math.floor((t % oneDay) / oneHour);
+  const mins = Math.floor((t % oneHour) / oneMin);
+  const secs = Math.floor((t % oneMin) / oneSec);
+
+  const values = [days, hours, mins, secs];
+
+  function format3(value) {
+    if (value < 10) {
+      return (value = `0${value}`);
+    } else {
+      return value;
+    }
+  }
+
+  items.forEach(function (item, index) {
+    item.textContent = format3(values[index]);
+  });
+
+  if (countDown < 1) {
+    clearInterval(countDown);
+    deadline.innerHTML = `<h4 class="expired">Sorry, giveaway has ended.</h4>`;
+  }
+}
+
+let countDown = setInterval(getRemainingTime, 1000);
+
+getRemainingTime();
