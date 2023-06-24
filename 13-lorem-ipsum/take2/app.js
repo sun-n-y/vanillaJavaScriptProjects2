@@ -26,6 +26,11 @@ form.addEventListener('submit', function (e) {
     result.innerHTML = `<p class="result">${text[randomNumber]}</p>`;
   } else {
     const tempArray = text.slice(0, value);
-    console.log(tempArray);
+    const textArray = tempArray
+      .map(function (item) {
+        return (item = `<p class="result">${item}</p>`);
+      })
+      .join('');
+    result.innerHTML = textArray;
   }
 });
