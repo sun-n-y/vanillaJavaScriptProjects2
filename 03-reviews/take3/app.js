@@ -49,12 +49,17 @@ prevBtn.addEventListener('click', function () {
   }
   showPerson(currentVal);
 });
+
 nextBtn.addEventListener('click', function () {
   currentVal++;
   if (currentVal > reviews.length - 1) {
     currentVal = 0;
   }
   showPerson(currentVal);
+});
+
+randomBtn.addEventListener('click', function () {
+  showPerson(Math.floor(Math.random() * reviews.length));
 });
 
 //funciton
