@@ -39,9 +39,10 @@ const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
 const randomBtn = document.querySelector('.random-btn');
 
-//event listener
+//initial value
 let currentVal = 0;
 
+//event listeners
 prevBtn.addEventListener('click', function () {
   currentVal--;
   if (currentVal < 0) {
