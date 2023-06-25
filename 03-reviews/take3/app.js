@@ -31,10 +31,37 @@ const reviews = [
 ];
 
 //target elements
-const img = document.querySelector('.img-container');
+const img = document.querySelector('#person-img');
 const author = document.querySelector('#author');
 const job = document.querySelector('#job');
 const info = document.querySelector('#info');
-const btns = document.getElementsByTagName('button');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+const randomBtn = document.querySelector('.random-btn');
 
-console.log(btns);
+//event listener
+let currentVal = 0;
+
+prevBtn.addEventListener('click', function () {
+  currentVal--;
+  if (currentVal < 0) {
+    currentVal = reviews.length - 1;
+  }
+  showPerson(currentVal);
+});
+nextBtn.addEventListener('click', function () {
+  currentVal++;
+  if (currentVal > reviews.length - 1) {
+    currentVal = 0;
+  }
+  showPerson(currentVal);
+});
+
+//funciton
+function showPerson(person) {
+  let item = reviews[person];
+  img.src = item.img;
+  author.textContent = item.name;
+  job.textContent = item.job;
+  info.textContent = item.text;
+}
