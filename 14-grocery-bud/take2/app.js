@@ -32,8 +32,8 @@ function addItem(e) {
             <button type="button" class="delete-btn"><i class="fas fa-trash"></i></button>
           </div>`;
     list.appendChild(element);
-    container.classList.add('show-container');
     displayAlert('item added to list', 'success');
+    container.classList.add('show-container');
     addItemToLocaleStorage(id, value);
     setBackToDefault();
   } else if (value && editFlag) {
