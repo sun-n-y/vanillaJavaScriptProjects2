@@ -72,7 +72,7 @@ function clearItems() {
   container.classList.remove('show-container');
   displayAlert('list emptied', 'danger');
   setBackToDefault();
-  // localStorage.removeItem(list)
+  localStorage.removeItem('list');
 }
 
 //delete item
@@ -85,7 +85,7 @@ function deleteItem(e) {
   }
   displayAlert('item deleted', 'success');
   //remove from local storage
-  //deleteItemFromLocalStorage(id){}
+  deleteItemFromLocalStorage(id);
   setBackToDefault();
 }
 
@@ -111,15 +111,27 @@ function setBackToDefault() {
 // ****** LOCAL STORAGE **********
 function addItemToLocaleStorage(id, value) {
   const grocery = { id, value };
-  let items = localStorage.getItem('list')
-    ? JSON.parse(localStorage.getItem('list'))
-    : [];
+  let items = getLocaleStorage();
   items.push(grocery);
   localStorage.setItem('list', JSON.stringify(items));
 }
 
-function deleteItemFromLocalStorage(id) {}
+function deleteItemFromLocalStorage(id) {
+  let items = getLocaleStorage();
+  items = items.filter(function (item) {
+    if (item.id != id) {
+      return item;
+    }
+  });
+  localStorage.setItem('list', JSON.stringify(items));
+}
 
 function editLocalStorage(editID, value) {}
+
+function getLocaleStorage() {
+  return localStorage.getItem('list')
+    ? JSON.parse(localStorage.getItem('list'))
+    : [];
+}
 
 // ****** SETUP ITEMS **********
