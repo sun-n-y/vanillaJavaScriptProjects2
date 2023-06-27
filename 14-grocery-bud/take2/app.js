@@ -44,7 +44,6 @@ function addItem(e) {
   } else if (value && editFlag) {
     editElement.innerHTML = value;
     displayAlert('item edited', 'success');
-    //edit local storage
     editLocalStorage(editID, value);
     setBackToDefault();
   } else {
@@ -111,7 +110,12 @@ function setBackToDefault() {
 
 // ****** LOCAL STORAGE **********
 function addItemToLocaleStorage(id, value) {
-  // console.log('item added to locale storage');
+  const grocery = { id, value };
+  let items = localStorage.getItem('list')
+    ? JSON.parse(localStorage.getItem('list'))
+    : [];
+  items.push(grocery);
+  localStorage.setItem('list', JSON.stringify(items));
 }
 
 function deleteItemFromLocalStorage(id) {}
