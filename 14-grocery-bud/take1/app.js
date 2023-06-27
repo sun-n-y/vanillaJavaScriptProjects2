@@ -92,7 +92,7 @@ function clearItems() {
 //delete funciton
 function deleteItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
-  // const id = element.datset.id;
+  const id = element.dataset.id;
   list.removeChild(element);
   if (list.childElementCount === 0) {
     container.classList.remove('show-container');
@@ -100,7 +100,7 @@ function deleteItem(e) {
   displayAlert('item removed', 'danger');
   setBackToDefault();
   //remove from locale storage
-  //removeFromLocaleStorage(id)
+  removeFromLocaleStorage(id);
 }
 
 //edit function
@@ -126,16 +126,28 @@ function setBackToDefault() {
 // ****** LOCAL STORAGE **********
 function addToLocalStorage(id, value) {
   const grocery = { id: id, value: value };
-  let items = localStorage.getItem('list')
-    ? JSON.parse(localStorage.getItem('list'))
-    : [];
+  let items = getLocalStorage();
   items.push(grocery);
   localStorage.setItem('list', JSON.stringify(items));
 }
 
-function removeFromLocaleStorage(id) {}
+function removeFromLocaleStorage(id) {
+  let items = getLocalStorage();
+  items = items.filter(function (item) {
+    if (item.id !== id) {
+      return item;
+    }
+  });
+  localStorage.setItem('list', JSON.stringify(items));
+}
 
 function editLocalStorage(editID, value) {}
+
+function getLocalStorage() {
+  return localStorage.getItem('list')
+    ? JSON.parse(localStorage.getItem('list'))
+    : [];
+}
 
 //localstorage api
 //setItem
