@@ -32,13 +32,21 @@ function addItem(e) {
             <button type="button" class="edit-btn"><i class="fas fa-edit"></i></button>
             <button type="button" class="delete-btn"><i class="fas fa-trash"></i></button>
           </div>`;
+    const deleteBtn = element.querySelector('.delete-btn');
+    const editBtn = element.querySelector('.edit-btn');
+    deleteBtn.addEventListener('click', deleteItem);
+    editBtn.addEventListener('click', editItem);
     list.appendChild(element);
     displayAlert('item added to list', 'success');
     container.classList.add('show-container');
     addItemToLocaleStorage(id, value);
     setBackToDefault();
   } else if (value && editFlag) {
-    console.log('edit item');
+    editElement.innerHTML = value;
+    displayAlert('item edited', 'success');
+    //edit local storage
+    editLocalStorage(editID, value);
+    setBackToDefault();
   } else {
     displayAlert('please enter value', 'danger');
   }
@@ -68,6 +76,31 @@ function clearItems() {
   // localStorage.removeItem(list)
 }
 
+//delete item
+function deleteItem(e) {
+  const element = e.currentTarget.parentElement.parentElement;
+  const id = element.dataset.id;
+  list.removeChild(element);
+  if (list.children.length === 0) {
+    container.classList.remove('show-container');
+  }
+  displayAlert('item deleted', 'success');
+  //remove from local storage
+  //deleteItemFromLocalStorage(id){}
+  setBackToDefault();
+}
+
+//edit item
+function editItem(e) {
+  const element = e.currentTarget.parentElement.parentElement;
+  editElement = e.currentTarget.parentElement.previousElementSibling;
+  groceryInput.value = editElement.innerHTML;
+  editID = element.dataset.id;
+  editFlag = true;
+  submitBtn.innerHTML = 'edit';
+  //edit local storage
+}
+
 //set back to default
 function setBackToDefault() {
   groceryInput.value = '';
@@ -78,7 +111,11 @@ function setBackToDefault() {
 
 // ****** LOCAL STORAGE **********
 function addItemToLocaleStorage(id, value) {
-  console.log('item added to locale storage');
+  // console.log('item added to locale storage');
 }
+
+function deleteItemFromLocalStorage(id) {}
+
+function editLocalStorage(editID, value) {}
 
 // ****** SETUP ITEMS **********
