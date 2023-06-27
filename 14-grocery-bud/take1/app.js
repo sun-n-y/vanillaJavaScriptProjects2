@@ -39,6 +39,11 @@ function addItem(e) {
             <button type="button" class="edit-btn"><i class="fas fa-edit"></i></button>
             <button type="button" class="delete-btn"><i class="fas fa-trash"></i></button>
           </div>`;
+    // delete & edit btn
+    const deleteBtn = element.querySelector('.delete-btn');
+    const editBtn = element.querySelector('.edit-btn');
+    deleteBtn.addEventListener('click', deleteItem);
+    editBtn.addEventListener('click', editItem);
     //append child to list
     list.appendChild(element);
     //display alert
@@ -78,6 +83,16 @@ function clearItems() {
   displayAlert('emptied list', 'danger');
   setBackToDefault();
   // localStorage.removeItem('list')
+}
+
+//delete funciton
+function deleteItem() {
+  console.log('item deleted');
+}
+
+//edit function
+function editItem() {
+  console.log('edit item');
 }
 
 //set back to defualt
