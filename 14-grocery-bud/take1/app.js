@@ -76,8 +76,8 @@ function clearItems() {
   }
   container.classList.remove('show-container');
   displayAlert('emptied list', 'danger');
-  // localStorage.removeItem('list')
   setBackToDefault();
+  // localStorage.removeItem('list')
 }
 
 //set back to defualt
