@@ -125,10 +125,29 @@ function setBackToDefault() {
 
 // ****** LOCAL STORAGE **********
 function addToLocalStorage(id, value) {
-  // console.log('added to local storage');
+  const grocery = { id: id, value: value };
+  let items = localStorage.getItem('list')
+    ? JSON.parse(localStorage.getItem('list'))
+    : [];
+  items.push(grocery);
+  localStorage.setItem('list', JSON.stringify(items));
 }
 
 function removeFromLocaleStorage(id) {}
 
 function editLocalStorage(editID, value) {}
+
+//localstorage api
+//setItem
+//getitem
+//removeitem
+//save as strings
+
+// localStorage.setItem('orange', JSON.stringify(['item', 'item2']));
+
+// const oranges = JSON.parse(localStorage.getItem('orange'));
+// console.log(oranges);
+
+// localStorage.removeItem('orange');
+
 // ****** SETUP ITEMS **********
