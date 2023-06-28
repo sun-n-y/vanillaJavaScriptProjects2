@@ -43,6 +43,8 @@ function addItem(e) {
     setBackToDefault();
   } else if (value && editFlag) {
     editElement.innerHTML = value;
+    displayAlert('value changed', 'success');
+    // editLocalStorage(editID,value)
     setBackToDefault();
   } else {
     displayAlert('please enter value', 'danger');
@@ -83,6 +85,7 @@ function editItem(e) {
   editElement = e.currentTarget.parentElement.previousElementSibling;
   itemInput.value = editElement.innerHTML;
   editFlag = true;
+  editID = element.dataset.id;
   submitBtn.textContent = 'edit';
 }
 
@@ -95,6 +98,13 @@ function setBackToDefault() {
 }
 
 // ****** LOCAL STORAGE **********
-function addToLocaleStorage(id, value) {}
+function addToLocaleStorage(id, value) {
+  const groceryItem = { id, value };
+  let items = localStorage.getItem('list')
+    ? JSON.parse(localStorage.getItem('list'))
+    : [];
+  items.push(groceryItem);
+  localStorage.setItem('list', JSON.stringify(items));
+}
 
 // ****** SETUP ITEMS **********
