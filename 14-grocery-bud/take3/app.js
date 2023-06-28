@@ -14,6 +14,7 @@ let editID = '';
 
 // ****** EVENT LISTENERS **********
 form.addEventListener('submit', addItem);
+clearBtn.addEventListener('click', clearItems);
 
 // ****** FUNCTIONS **********
 function addItem(e) {
@@ -31,13 +32,18 @@ function addItem(e) {
             <button type="button" class="edit-btn"><i class="fas fa-edit"></i></button>
             <button type="button" class="delete-btn"><i class="fas fa-trash"></i></button>
           </div>`;
+    const deleteBtn = element.querySelector('.delete-btn');
+    const editBtn = element.querySelector('.edit-btn');
+    deleteBtn.addEventListener('click', deleteItem);
+    editBtn.addEventListener('click', editItem);
     list.appendChild(element);
     displayAlert('item added', 'success');
     container.classList.add('show-container');
     addToLocaleStorage(id, value);
     setBackToDefault();
   } else if (value && editFlag) {
-    console.log('edit');
+    editElement.innerHTML = value;
+    setBackToDefault();
   } else {
     displayAlert('please enter value', 'danger');
   }
@@ -53,14 +59,42 @@ function displayAlert(text, action) {
   }, 1500);
 }
 
+function clearItems() {
+  list.innerHTML = '';
+  container.classList.remove('show-container');
+  displayAlert('list cleared', 'danger');
+}
+
+//delete item
+function deleteItem(e) {
+  const element = e.currentTarget.parentElement.parentElement;
+  list.removeChild(element);
+  if (list.children.length === 0) {
+    container.classList.remove('show-container');
+  }
+  displayAlert('item removed', 'danger');
+  setBackToDefault();
+  //removeFromLocalStorage(id)
+}
+
+//edit item
+function editItem(e) {
+  const element = e.currentTarget.parentElement.parentElement;
+  editElement = e.currentTarget.parentElement.previousElementSibling;
+  itemInput.value = editElement.innerHTML;
+  editFlag = true;
+  submitBtn.textContent = 'edit';
+}
+
 //set back to default
 function setBackToDefault() {
-  console.log('back to default');
+  itemInput.value = '';
+  editFlag = false;
+  editID = '';
+  submitBtn.textContent = 'submit';
 }
 
 // ****** LOCAL STORAGE **********
-function addToLocaleStorage(id, value) {
-  console.log('item added to locale storage');
-}
+function addToLocaleStorage(id, value) {}
 
 // ****** SETUP ITEMS **********
