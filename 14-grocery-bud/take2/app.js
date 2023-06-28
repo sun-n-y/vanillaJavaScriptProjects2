@@ -132,10 +132,12 @@ function getLocaleStorage() {
 // ****** SETUP ITEMS **********
 function setupItems() {
   let items = getLocaleStorage();
-  items.forEach(function (item) {
-    createElement(item.id, item.value);
-  });
-  container.classList.add('show-container');
+  if (items.length > 0) {
+    items.forEach(function (item) {
+      createElement(item.id, item.value);
+    });
+    container.classList.add('show-container');
+  }
 }
 
 function createElement(id, value) {
