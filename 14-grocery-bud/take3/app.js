@@ -70,13 +70,14 @@ function clearItems() {
 //delete item
 function deleteItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
+  const id = element.dataset.id;
   list.removeChild(element);
   if (list.children.length === 0) {
     container.classList.remove('show-container');
   }
   displayAlert('item removed', 'danger');
   setBackToDefault();
-  //removeFromLocalStorage(id)
+  removeFromLocalStorage(id);
 }
 
 //edit item
@@ -100,11 +101,27 @@ function setBackToDefault() {
 // ****** LOCAL STORAGE **********
 function addToLocaleStorage(id, value) {
   const groceryItem = { id, value };
-  let items = localStorage.getItem('list')
-    ? JSON.parse(localStorage.getItem('list'))
-    : [];
+  let items = getLocalStorage();
   items.push(groceryItem);
   localStorage.setItem('list', JSON.stringify(items));
+}
+
+function removeFromLocalStorage(id) {
+  let items = getLocalStorage();
+  items = items.filter(function (item) {
+    if (item.id != id) {
+      return item;
+    } else {
+      localStorage.removeItem(item);
+    }
+  });
+  localStorage.setItem('list', JSON.stringify(items));
+}
+
+function getLocalStorage() {
+  return localStorage.getItem('list')
+    ? JSON.parse(localStorage.getItem('list'))
+    : [];
 }
 
 // ****** SETUP ITEMS **********
