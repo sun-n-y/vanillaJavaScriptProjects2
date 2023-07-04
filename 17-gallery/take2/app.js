@@ -20,19 +20,26 @@ function Gallery(element) {
   this.mainImage = getElement('.main-img');
   this.imageName = getElement('.image-name');
   this.modalImages = getElement('.modal-images');
-  element.addEventListener(
+  //bind functions
+  this.container.addEventListener(
     'click',
     function (e) {
       if (e.target.classList.contains('img')) {
-        this.openModal();
+        this.openModal(e.target, this.list);
       }
     }.bind(this)
   );
 }
 
 //prototype function
-Gallery.prototype.openModal = function () {
-  console.log('hi');
+Gallery.prototype.openModal = function (selectedImage, list) {
+  this.modal.classList.add('open');
+  this.setImage(selectedImage);
+  console.log(list);
+};
+
+Gallery.prototype.setImage = function (img) {
+  this.mainImage.src = img.src;
 };
 
 //instances
