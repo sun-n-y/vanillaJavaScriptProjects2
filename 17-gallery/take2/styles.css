@@ -53,6 +53,7 @@ Variables
   --max-width: 1170px;
   --fixed-width: 620px;
 }
+
 /*
 =============== 
 Global Styles
@@ -66,6 +67,7 @@ Global Styles
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: var(--ff-secondary);
   background: var(--clr-white);
@@ -73,12 +75,15 @@ body {
   line-height: 1.5;
   font-size: 0.875rem;
 }
+
 ul {
   list-style-type: none;
 }
+
 a {
   text-decoration: none;
 }
+
 h1,
 h2,
 h3,
@@ -89,38 +94,49 @@ h4 {
   margin-bottom: 0.75rem;
   font-family: var(--ff-primary);
 }
+
 h1 {
   font-size: 3rem;
 }
+
 h2 {
   font-size: 2rem;
 }
+
 h3 {
   font-size: 1.25rem;
 }
+
 h4 {
   font-size: 0.875rem;
 }
+
 p {
   margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
 }
+
 @media screen and (min-width: 800px) {
   h1 {
     font-size: 4rem;
   }
+
   h2 {
     font-size: 2.5rem;
   }
+
   h3 {
     font-size: 1.75rem;
   }
+
   h4 {
     font-size: 1rem;
   }
+
   body {
     font-size: 1rem;
   }
+
   h1,
   h2,
   h3,
@@ -128,6 +144,7 @@ p {
     line-height: 1;
   }
 }
+
 /*  global classes */
 
 /* section */
@@ -139,24 +156,29 @@ p {
   display: grid;
   gap: 2rem;
 }
+
 @media screen and (min-width: 768px) {
   .section {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
 }
+
 @media screen and (min-width: 992px) {
   .section {
     grid-template-columns: 1fr 1fr 1fr;
     width: 95vw;
   }
+
   .prev-btn {
     left: -4.5rem;
   }
+
   .next-btn {
     right: -4.5rem;
   }
 }
+
 .img {
   width: 100%;
   height: 100%;
@@ -167,6 +189,7 @@ p {
   box-shadow: var(--light-shadow);
   height: 15rem;
 }
+
 .img:hover {
   box-shadow: var(--dark-shadow);
 }
@@ -187,13 +210,15 @@ Modal
   background: rgb(0, 0, 0);
   transition: var(--transition);
   opacity: 0;
-  min-height: 100vh;
-  overflow: scroll;
+  /* min-height: 100vh; */
+  /* overflow: scroll; */
 }
+
 .modal.open {
   opacity: 1;
   z-index: 999;
 }
+
 .close-btn {
   position: absolute;
   top: 1rem;
@@ -204,6 +229,7 @@ Modal
   border-color: transparent;
   cursor: pointer;
 }
+
 .next-btn,
 .prev-btn {
   position: absolute;
@@ -215,16 +241,21 @@ Modal
   border-color: transparent;
   cursor: pointer;
 }
+
+
 .prev-btn {
   left: -2.5rem;
 }
+
 .next-btn {
   right: -2.5rem;
 }
+
 @media screen and (min-width: 768px) {
   .prev-btn {
     left: -4rem;
   }
+
   .next-btn {
     right: -4rem;
   }
@@ -237,21 +268,25 @@ Modal
   margin-top: 10rem;
   position: relative;
 }
+
 .main-img {
   width: 100%;
   height: 20rem;
   object-fit: cover;
   border-radius: var(--radius);
 }
+
 .image-name {
   text-align: center;
   margin: 1rem 0 3rem;
   color: var(--clr-white);
 }
+
 .modal-images {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
+
 .modal-img {
   width: 100%;
   height: 5rem;
@@ -260,9 +295,11 @@ Modal
   transition: var(--transition);
   cursor: pointer;
 }
+
 .modal-img:hover {
   opacity: 1;
 }
+
 .modal-img.selected {
   opacity: 1;
 }
