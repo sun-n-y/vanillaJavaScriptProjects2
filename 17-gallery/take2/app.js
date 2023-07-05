@@ -21,6 +21,9 @@ function Gallery(element) {
   this.imageName = getElement('.image-name');
   this.modalImages = getElement('.modal-images');
   //bind functions
+  this.close = this.close.bind(this);
+  this.next = this.next.bind(this);
+  this.prev = this.prev.bind(this);
   //event listener for container
   this.container.addEventListener(
     'click',
@@ -43,6 +46,9 @@ Gallery.prototype.openModal = function (selectedImage, list) {
     })
     .join('');
   this.modal.classList.add('open');
+  this.closeBtn.addEventListener('click', this.close);
+  this.nextBtn.addEventListener('click', this.next);
+  this.prevBtn.addEventListener('click', this.prev);
 };
 
 Gallery.prototype.setImage = function (selectedImage) {
@@ -50,8 +56,19 @@ Gallery.prototype.setImage = function (selectedImage) {
   this.imageName.textContent = selectedImage.title;
 };
 
+Gallery.prototype.close = function () {
+  this.modal.classList.remove('open');
+  this.closeBtn.removeEventListener('click', this.close);
+  this.nextBtn.removeEventListener('click', this.next);
+  this.prevBtn.removeEventListener('click', this.prev);
+};
+Gallery.prototype.next = function () {
+  console.log('next');
+};
+Gallery.prototype.prev = function () {
+  console.log('prev');
+};
+
 //instances
 const nature = new Gallery(getElement('.nature'));
 const city = new Gallery(getElement('.city'));
-
-console.log(nature);
