@@ -63,10 +63,20 @@ Gallery.prototype.close = function () {
   this.prevBtn.removeEventListener('click', this.prev);
 };
 Gallery.prototype.next = function () {
-  console.log('next');
+  const selected = this.modalImages.querySelector('.selected');
+  const next =
+    selected.nextElementSibling || this.modalImages.firstElementChild;
+  selected.classList.remove('selected');
+  next.classList.add('selected');
+  this.setImage(next);
 };
 Gallery.prototype.prev = function () {
-  console.log('prev');
+  const selected = this.modalImages.querySelector('.selected');
+  const prev =
+    selected.previousElementSibling || this.modalImages.lastElementChild;
+  selected.classList.remove('selected');
+  prev.classList.add('selected');
+  this.setImage(prev);
 };
 
 //instances
