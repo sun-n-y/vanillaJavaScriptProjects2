@@ -34,12 +34,24 @@ function Gallery(element) {
 
 //prototypes for constructor
 Gallery.prototype.openModal = function (selected, list) {
+  this.setImage(selected);
+  this.modalImages.innerHTML = list
+    .map(function (image) {
+      return `<img src="${
+        image.src
+      }" title="${image.title}" class="${image.dataset.id === selected.dataset.id ? 'modal-img selected' : 'modal-img'}" data-id="${image.dataset.id}" alt="${image.alt}">`;
+    })
+    .join('');
   this.modal.classList.add('open');
-  console.log(selected, list);
+};
+
+Gallery.prototype.setImage = function (selected) {
+  this.mainImage.src = selected.src;
+  this.imageName.textContent = selected.title;
 };
 
 //instances
 const nature = new Gallery(getElement('.nature'));
 const city = new Gallery(getElement('.city'));
 
-console.log(nature);
+// console.log(nature);
