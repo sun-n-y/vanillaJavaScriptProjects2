@@ -17,10 +17,11 @@ function Gallery(element) {
   this.closeBtn = getElement('.close-btn');
   this.prevBtn = getElement('.prev-btn');
   this.nextBtn = getElement('.next-btn');
-  this.mainImage = getElement('.main-img');
+  this.modalImage = getElement('.main-img');
   this.imageName = getElement('.image-name');
   this.modalImages = getElement('.modal-images');
   //bind functions
+  //event listener for container
   this.container.addEventListener(
     'click',
     function (e) {
@@ -33,13 +34,20 @@ function Gallery(element) {
 
 //prototype function
 Gallery.prototype.openModal = function (selectedImage, list) {
-  this.modal.classList.add('open');
   this.setImage(selectedImage);
-  console.log(list);
+  this.modalImages.innerHTML = list
+    .map(function (image) {
+      return `<img src="${
+        image.src
+      }" title="${image.title}" class="${image.dataset.id === selectedImage.dataset.id ? 'modal-img selected' : 'modal-img'}" data-id="${image.dataset.id}"/>`;
+    })
+    .join('');
+  this.modal.classList.add('open');
 };
 
-Gallery.prototype.setImage = function (img) {
-  this.mainImage.src = img.src;
+Gallery.prototype.setImage = function (selectedImage) {
+  this.modalImage.src = selectedImage.src;
+  this.imageName.textContent = selectedImage.title;
 };
 
 //instances
