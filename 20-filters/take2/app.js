@@ -49,8 +49,8 @@ const displayButtons = () => {
     ),
   ];
   btnContainer.innerHTML = buttons
-    .map((button) => {
-      return `<button class="company-btn">${button}</button>`;
+    .map((company) => {
+      return `<button class="company-btn" data-id="${company}">${company}</button>`;
     })
     .join('');
 };
