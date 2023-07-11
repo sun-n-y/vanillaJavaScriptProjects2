@@ -37,7 +37,7 @@ form.addEventListener('keyup', () => {
 });
 
 //display filter buttons
-const btnContainer = document.querySelector('.companies');
+const companies = document.querySelector('.companies');
 
 const displayButtons = () => {
   const buttons = [
@@ -48,7 +48,7 @@ const displayButtons = () => {
       })
     ),
   ];
-  btnContainer.innerHTML = buttons
+  companies.innerHTML = buttons
     .map((company) => {
       return `<button class="company-btn" data-id="${company}">${company}</button>`;
     })
@@ -56,3 +56,19 @@ const displayButtons = () => {
 };
 
 displayButtons();
+
+//filter based on company
+companies.addEventListener('click', (e) => {
+  const el = e.target;
+  if (el.classList.contains('company-btn')) {
+    if (el.dataset.id === 'All') {
+      filteredProducts = [...products];
+    } else {
+      filteredProducts = products.filter((product) => {
+        return product.company === el.dataset.id;
+      });
+    }
+    searchInput.value = '';
+    displayProducts();
+  }
+});
