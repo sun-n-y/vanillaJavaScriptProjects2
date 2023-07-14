@@ -24,7 +24,7 @@ const displayProducts = (list) => {
       const { name: title, price } = product.fields;
       const formatPrice = price / 100;
       const { url: img } = product.fields.image[0];
-      return `<a href="product.html" class="single-product">
+      return `<a href="product.html?id=${id}&name=john&age=25" class="single-product">
           <img src="${img}" alt="${title}" class="single-product-img img">
           <footer>
             <h5 class="name">${title}</h5>
