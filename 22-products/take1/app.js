@@ -7,7 +7,7 @@ const fetchProduct = async () => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    displayProducts(list);
+    return data;
   } catch (error) {
     productsDOM.innerHTML = `<div class="error">There was an error.</div>`;
   }
@@ -17,4 +17,9 @@ const displayProducts = (list) => {
   console.log(list);
 };
 
-fetchProduct();
+const start = async () => {
+  const data = await fetchProduct();
+  displayProducts(data);
+};
+
+start();
