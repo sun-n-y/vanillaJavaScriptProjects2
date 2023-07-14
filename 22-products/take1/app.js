@@ -1,15 +1,20 @@
 //store products
-const url = 'https://course-api.com/javascript-store-productss';
+const url = 'https://course-api.com/javascript-store-products';
 const productsDOM = document.querySelector('.products-center');
 
 const fetchProduct = async () => {
+  productsDOM.innerHTML = `<div class="loading"></div>`;
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
+    displayProducts(list);
   } catch (error) {
-    console.log(error);
+    productsDOM.innerHTML = `<div class="error">There was an error.</div>`;
   }
+};
+
+const displayProducts = (list) => {
+  console.log(list);
 };
 
 fetchProduct();
