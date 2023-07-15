@@ -19,7 +19,7 @@ const displayProducts = (list) => {
       const { name: title, price } = product.fields;
       const { url: img } = product.fields.image[0];
       formatPrice = price / 100;
-      return `<a href="product.html?id=${id}&name=john&age=25" class="single-product">
+      return `<a href="singleProduct.html?id=${id}&name=john&age=25" class="single-product">
           <img src="${img}" alt="${title}" class="single-product-img img">
           <footer>
             <h5 class="name">${title}</h5>
@@ -28,7 +28,7 @@ const displayProducts = (list) => {
         </a>`;
     })
     .join('');
-  productDOM.innerHTML = productList;
+  productDOM.innerHTML = `<div class="products-container">${productList}</div>`;
 };
 
 const start = async () => {
