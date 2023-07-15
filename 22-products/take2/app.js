@@ -3,20 +3,37 @@ const productDOM = document.querySelector('.products-center');
 
 const fetchProducts = async () => {
   try {
+    productDOM.innerHTML = `<div class="loading"></div>`;
     const response = await fetch(url);
     const data = await response.json();
-    displayProducts(data);
+    return data;
   } catch (error) {
-    console.log(error);
+    productDOM.innerHTML = `<p class="error">Error...</p>`;
   }
 };
 
-const displayProducts = (products) => {
-  console.log(products);
+const displayProducts = (list) => {
+  const productList = list
+    .map((product) => {
+      const { id } = product;
+      const { name: title, price } = product.fields;
+      const { url: img } = product.fields.image[0];
+      formatPrice = price / 100;
+      return `<a href="product.html?id=${id}&name=john&age=25" class="single-product">
+          <img src="${img}" alt="${title}" class="single-product-img img">
+          <footer>
+            <h5 class="name">${title}</h5>
+            <span class="price">$${formatPrice}</span>
+          </footer>
+        </a>`;
+    })
+    .join('');
+  productDOM.innerHTML = productList;
 };
 
-const start = () => {
-  fetchProducts();
+const start = async () => {
+  const data = await fetchProducts();
+  displayProducts(data);
 };
 
 start();
