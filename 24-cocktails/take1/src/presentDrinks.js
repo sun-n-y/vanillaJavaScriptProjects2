@@ -1,5 +1,8 @@
+import fetchDrinks from './fetchDrinks.js';
+
 const showDrinks = async (url) => {
-  console.log(url);
+  const data = await fetchDrinks(url);
+  console.log(data);
   //fetch drinks
   //displat drinks
 };
