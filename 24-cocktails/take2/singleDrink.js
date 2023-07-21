@@ -9,7 +9,7 @@ const presentDrink = async () => {
     const drink = await fetchDrinks(
       `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
     );
-    displayDrink(drink);
+    displayDrink(drink.drinks[0]);
   }
 };
 

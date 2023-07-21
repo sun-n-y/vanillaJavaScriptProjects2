@@ -1,4 +1,36 @@
-const displayDrink = (drink) => {
-  console.log(drink);
+import get from './getElement.js';
+import { hideLoading } from './toggleLoading.js';
+
+const displayDrink = (data) => {
+  hideLoading();
+  const drink = data;
+  const { strDrinkThumb: image, strDrink: name, strInstructions: desc } = drink;
+  const list = [
+    drink.strIngredient1,
+    drink.strIngredient2,
+    drink.strIngredient3,
+    drink.strIngredient4,
+    drink.strIngredient5,
+  ];
+
+  const img = get('.drink-img');
+  const dirnkName = get('.drink-name');
+  const description = get('.drink-desc');
+  const ingredients = get('.drink-ingredients');
+
+  window.document.title = name;
+  img.src = image;
+  dirnkName.textContent = name;
+  description.textContent = desc;
+
+  ingredients.innerHTML = list
+    .map((item) => {
+      if (item) {
+        return `<li><i class="far fa-check-square"></i>${item}</li>`;
+      } else {
+        return;
+      }
+    })
+    .join('');
 };
 export default displayDrink;
