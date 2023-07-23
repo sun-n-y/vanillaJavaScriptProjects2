@@ -9,7 +9,7 @@ const presentDrink = async () => {
   const drink = await fetchDrinks(
     `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
   );
-  console.log(drink, window);
+  displayDrink(drink);
 };
 
 window.addEventListener('DOMContentLoaded', presentDrink);
