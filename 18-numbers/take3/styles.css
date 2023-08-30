@@ -112,6 +112,7 @@ small,
 a {
   text-decoration: none;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -122,6 +123,7 @@ ul {
   display: block;
   object-fit: cover;
 }
+
 /*
 =============== 
 Numbers 
@@ -142,6 +144,7 @@ section {
     grid-template-columns: 1fr 1fr;
   }
 }
+
 @media screen and (min-width: 992px) {
   section {
     grid-template-columns: 1fr 1fr 1fr;
@@ -170,9 +173,11 @@ article p {
 article:nth-of-type(1) {
   border-bottom-color: #f59e0b;
 }
+
 article:nth-of-type(2) {
   border-bottom-color: #14b8a6;
 }
+
 article:nth-of-type(3) {
   border-bottom-color: #a855f7;
 }
