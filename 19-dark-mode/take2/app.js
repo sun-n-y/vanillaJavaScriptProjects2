@@ -9,11 +9,12 @@ toggleBtn.addEventListener('click', () => {
 window.addEventListener('DOMContentLoaded', () => {
   const articlesData = articles
     .map(({ title, date, length, snippet }) => {
+      const fromatDate = moment(date).format('MMMM Do, YYYY');
       return `<article class="post">
         <h2 class="post-title">${title}</h2>
         <div class="post-info">
-          <span>${date}</span>
-          <span>${length}</span>
+          <span>${fromatDate}</span>
+          <span>${length} min read</span>
         </div>
         <p>${snippet}</p>
       </article>`;
