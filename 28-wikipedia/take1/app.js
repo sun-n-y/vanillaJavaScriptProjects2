@@ -25,11 +25,21 @@ const fetchPages = async (searchValue) => {
     if (results.length < 1) {
       resultsDOM.innerHTML =
         '<div class="error">no matching results. please try again.</div>';
+      return;
     }
     rederResults(results);
   } catch (error) {}
 };
 
 const rederResults = (list) => {
-  console.log(list);
+  const cardsList = list
+    .map((item) => {
+      const { title, snippet, pageid } = item;
+      return `<a href="http://en.wikipedia.org/?curid=${pageid}" target="_blank">
+          <h4>${title}</h4>
+          <p>${snippet}</p>
+        </a>`;
+    })
+    .join('');
+  resultsDOM.innerHTML = `<div class="articles">${cardsList}</div>`;
 };
