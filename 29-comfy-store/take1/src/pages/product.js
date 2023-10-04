@@ -22,6 +22,11 @@ const cartBtn = getElement('.addToCartBtn');
 let productID;
 
 // show product when page loads
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
+  const urlID = window.location.search;
+  const response = await fetch(`${singleProductUrl}${urlID}`)
+    .then((err) => console.log(err))
+    .json();
+  console.log(response);
   loading.style.display = 'none';
 });
