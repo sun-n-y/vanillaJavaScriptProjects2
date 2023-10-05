@@ -29,6 +29,12 @@ export const addToCart = (id) => {
     addToCartDOM(product);
   } else {
     //update value
+    const amount = increaseAmount(id);
+    const items = [...cartItemsDOM.querySelectorAll('.cart-item-amount')];
+    const newAmount = items.find((value) => {
+      return value.dataset.id === id;
+    });
+    newAmount.textContent = amount;
   }
   //add one to item count
   displayCartItemCount();
@@ -58,6 +64,18 @@ function displayCartItemsDOM() {
   cart.forEach((cartItem) => {
     addToCartDOM(cartItem);
   });
+}
+
+function increaseAmount(id) {
+  let newAmount;
+  cart = cart.map((cartItem) => {
+    if (cartItem.id === id) {
+      newAmount = cartItem.amount + 1;
+      cartItem = { ...cartItem, amount: newAmount };
+    }
+    return cartItem;
+  });
+  return newAmount;
 }
 
 function setupCartFunctionality() {}
