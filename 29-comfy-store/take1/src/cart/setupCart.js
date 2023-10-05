@@ -17,7 +17,22 @@ const cartTotalDOM = getElement('.cart-total');
 let cart = getStorageItem('cart');
 
 export const addToCart = (id) => {
-  console.log(id);
+  let item = cart.find((cartItem) => {
+    return cartItem.id === id;
+  });
+  if (!item) {
+    //add item to cart
+    let product = findProduct(id);
+    product = { ...product, amount: 1 };
+    cart = [...cart, product];
+    //add to dom
+    addToCartDOM(product);
+    console.log(cart);
+  } else {
+    //update value
+  }
+
+  //more later
   openCart();
 };
 
