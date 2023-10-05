@@ -27,7 +27,7 @@ const setupCompanies = (store) => {
           return product.company === e.target.textContent;
         });
       }
-      display(newStore, getElement('.products-container'));
+      display(newStore, getElement('.products-container'), true);
     }
   });
 };
