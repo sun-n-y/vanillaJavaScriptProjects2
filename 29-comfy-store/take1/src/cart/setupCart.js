@@ -27,7 +27,6 @@ export const addToCart = (id) => {
     cart = [...cart, product];
     //add to dom
     addToCartDOM(product);
-    console.log(cart);
   } else {
     //update value
   }
