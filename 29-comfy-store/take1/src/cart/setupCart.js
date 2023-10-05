@@ -30,10 +30,29 @@ export const addToCart = (id) => {
   } else {
     //update value
   }
-
+  //add one to item count
+  displayCartItemCount();
+  // display cart totals
+  displayCartTotal();
+  //set cart in locale storage
+  setStorageItem('cart', cart);
   //more later
   openCart();
 };
+
+function displayCartItemCount() {
+  const amount = cart.reduce((total, cartItem) => {
+    return (total += cartItem.amount);
+  }, 0);
+  cartItemCountDOM.textContent = amount;
+}
+
+function displayCartTotal() {
+  let total = cart.reduce((total, cartItem) => {
+    return (total += cartItem.price * cartItem.amount);
+  }, 0);
+  cartTotalDOM.textContent = `Total : ${formatPrice(total)}`;
+}
 
 const init = () => {
   console.log(cart);
